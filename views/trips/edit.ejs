@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edytuj podróż</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Edytuj: <%= trip.name %></h1>
+  <form action="/trips/<%= trip.id %>" method="POST">
+    <input name="name" value="<%= trip.name %>" required /><br>
+    <input name="date" type="date" value="<%= trip.date %>" required /><br>
+    <input name="hotel" value="<%= trip.hotel %>" /><br>
+    <input name="transport" value="<%= trip.transport %>" /><br>
+    <textarea name="places"><%= trip.places %></textarea><br>
+    <button type="submit">Zapisz zmiany</button>
+  </form>
+</body>
+</html>

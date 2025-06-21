@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista podróży</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Zaplanowane podróże</h1>
+  <a href="/trips/new">➕ Dodaj nową podróż</a>
+  <ul>
+    <% trips.forEach(trip => { %>
+      <li>
+        <strong><%= trip.name %></strong> – <%= trip.date %><br>
+        Hotel: <%= trip.hotel %><br>
+        Transport: <%= trip.transport %><br>
+        Miejsca: <%= trip.places %><br>
+        <a href="/trips/<%= trip.id %>/edit">✏️ Edytuj</a>
+        <form action="/trips/<%= trip.id %>/delete" method="POST" style="display:inline;">
+          <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć tę podróż?')">🗑 Usuń</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
