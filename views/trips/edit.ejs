@@ -6,13 +6,28 @@
 </head>
 <body>
   <h1>Edytuj: <%= trip.name %></h1>
+
   <form action="/trips/<%= trip.id %>" method="POST">
-    <input name="name" value="<%= trip.name %>" required /><br>
-    <input name="date" type="date" value="<%= trip.date %>" required /><br>
-    <input name="hotel" value="<%= trip.hotel %>" /><br>
-    <input name="transport" value="<%= trip.transport %>" /><br>
-    <textarea name="places"><%= trip.places %></textarea><br>
+    <label for="name">Nazwa podróży:</label><br>
+    <input name="name" id="name" value="<%= trip.name %>" required /><br>
+
+    <label for="date">Data wyjazdu:</label><br>
+    <input name="date" id="date" type="date" value="<%= trip.date %>" required /><br>
+
+    <label for="hotel">Hotel:</label><br>
+    <input name="hotel" id="hotel" value="<%= trip.hotel %>" /><br>
+
+    <label for="transport">Środek transportu:</label><br>
+    <input name="transport" id="transport" value="<%= trip.transport %>" /><br>
+
+    <label for="places">Trasa podróży (oddziel miejsca przecinkami):</label><br>
+    <textarea name="places" id="places" rows="4" placeholder="np. Kraków, Wrocław, Praga"><%= trip.places %></textarea><br>
+
     <button type="submit">Zapisz zmiany</button>
   </form>
+
+  <br>
+  <a href="/trips">⬅ Wróć do listy podróży</a>
 </body>
 </html>
+
