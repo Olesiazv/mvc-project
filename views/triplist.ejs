@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.css">
-    <title>Plans list</title>
+  <title>Trip List</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div >
-            <h1 style="padding-bottom: 20px;">Trip plans</h1>
-            <a href="/add" class="common-btn" style="background-color: lightsalmon;">Add plan</a>
-        </div>
-        <% trips.forEach(trip => { %>
-        <div class="trip">
-            <div class="trip-elem">Description: <%= trip.description %></div>
-                <div class="trip-elem">Date: <%= trip.date %></div>
-                <div class="trip-elem">Hotel: <%= trip.hotel %></div>
-                <div class="trip-elem">Transport: <%= trip.transport %></div>
-            <div class="">
-                <a href="/trip/<%= trips.indexOf(trip) %>/edit" class="common-btn" style="background-color: lime;">Edit</a>
-            </div>
-        </div>
-        <% }); %>
-    </div>
+  <h1>Trip List</h1>
+  <a href="/new">Add New Trip</a>
+  <ul>
+    <% trips.forEach((trip, index) => { %>
+      <li>
+        <strong><%= trip.description %></strong> |
+        Date: <%= trip.date %> |
+        Transport: <%= trip.transport %> |
+        Hotel: <%= trip.hotel %> |
+        <a href="/edit/<%= index %>">Edit</a>
+        <form action="/delete/<%= index %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
 </body>
 </html>

@@ -1,9 +1,9 @@
-const Trip = require('../models/Trip');
+// controllers/TripController.js
+const TripModel = require('../models/TripModel');
 const path = require('path');
 
-let trips = [];
-
 exports.getTriptsPage = (req, res) => {
+    const trips = TripModel.getAll();
     res.render('triplist', { trips });
 };
 
@@ -13,43 +13,38 @@ exports.getAddTripPage = (req, res) => {
 
 exports.addTrip = (req, res) => {
     const { description, date, transport, hotel } = req.body;
-    trips.push(new Trip(description, date, transport, hotel));
+    TripModel.add(description, date, transport, hotel);
     res.redirect('/');
 };
 
 exports.getEditTripPage = (req, res) => {
     const id = req.params.id;
-    if (!trips[id]) {
+    const trip = TripModel.getById(id);
+    if (!trip) {
         res.status(404).send('Trip not found');
     } else {
-        const trip = trips[id];
-        trip.id = id;
+        trip.id = id; // передаємо id для форми
         res.render('formUpdate', { trip });
     }
 };
 
-
 exports.updateTrip = (req, res) => {
     const id = req.params.id;
     const { description, date, transport, hotel } = req.body;
-    if (!trips[id]) {
+    const updated = TripModel.update(id, description, date, transport, hotel);
+    if (!updated) {
         res.status(404).send('Trip not found');
     } else {
-        trips[id].description = description;
-        trips[id].date = date;
-        trips[id].transport = transport;
-        trips[id].hotel = hotel;
         res.redirect('/');
     }
 };
 
-
 exports.deleteTrip = (req, res) => {
     const id = req.params.id;
-    if (!trips[id]) {
+    const deleted = TripModel.delete(id);
+    if (!deleted) {
         res.status(404).send('Trip not found');
     } else {
-        trips.splice(id, 1);
         res.redirect('/');
     }
 };

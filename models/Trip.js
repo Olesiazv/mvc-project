@@ -1,3 +1,4 @@
+// models/Trip.js
 class Trip {
   constructor(description, date, transport, hotel) {
     this.description = description;
