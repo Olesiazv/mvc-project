@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Trip List</title>
-</head>
-<body>
-  <h1>Trip List</h1>
-  <a href="/new">Add New Trip</a>
-  <ul>
-    <% trips.forEach((trip, index) => { %>
-      <li>
-        <strong><%= trip.description %></strong> |
-        Date: <%= trip.date %> |
-        Transport: <%= trip.transport %> |
-        Hotel: <%= trip.hotel %> |
-        <a href="/edit/<%= index %>">Edit</a>
-        <form action="/delete/<%= index %>" method="POST" style="display:inline;">
-          <button type="submit">Delete</button>
+<%- include('partials/header') %>
+
+<h1>Zaplanowane podróże</h1>
+
+<div class="top-bar">
+  <a class="button-link" href="/new">➕ Dodaj nową podróż</a>
+</div>
+
+<ul class="trip-list">
+  <% trips.forEach((trip, index) => { %>
+    <li class="trip-card">
+      <div class="trip-info">
+        <strong><%= trip.description %></strong> – <%= trip.date %><br>
+        <span>Hotel:</span> <%= trip.hotel %><br>
+        <span>Transport:</span> <%= trip.transport %><br>
+        <span>Miejsca:</span> <%= trip.attractions %>
+      </div>
+      <div class="trip-actions">
+        <a class="edit-link" href="/edit/<%= index %>">✏️ Edytuj</a>
+        <form action="/delete/<%= index %>" method="POST">
+          <button class="delete-btn" type="submit">🗑️ Usuń</button>
         </form>
-      </li>
-    <% }) %>
-  </ul>
-</body>
-</html>
+      </div>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('partials/footer') %>

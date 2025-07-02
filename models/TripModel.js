@@ -36,3 +36,5 @@ class TripModel {
 }
 
 module.exports = new TripModel();
+
+

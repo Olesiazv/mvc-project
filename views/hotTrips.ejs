@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+
+<h2 style="text-align: center; margin-bottom: 30px;">🔥 Gorące oferty</h2>
+
+<ul>
+  <% hotTrips.forEach((trip) => { %>
+    <li>
+      <strong><%= trip.description %></strong><br>
+      Data: <%= trip.date %><br>
+      Transport: <%= trip.transport %><br>
+      Hotel: <%= trip.hotel %>
+    </li>
+  <% }) %>
+</ul>
+
+<div class="form-actions">
+  <a href="/" class="button-link">← Wróć do moich podróży</a>
+</div>
+
+<%- include('partials/footer') %>

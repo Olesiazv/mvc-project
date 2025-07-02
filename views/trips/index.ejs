@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
+  <meta charset="UTF-8">
   <title>Lista podróży</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Zaplanowane podróże</h1>
-  <a href="/trips/new">➕ Dodaj nową podróż</a>
-  <ul>
-    <% trips.forEach(trip => { %>
-      <li>
-        <strong><%= trip.name %></strong> – <%= trip.date %><br>
-        Hotel: <%= trip.hotel %><br>
-        Transport: <%= trip.transport %><br>
-        Miejsca: <%= trip.places %><br>
-        <a href="/trips/<%= trip.id %>/edit">✏️ Edytuj</a>
-        <form action="/trips/<%= trip.id %>/delete" method="POST" style="display:inline;">
-          <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć tę podróż?')">🗑 Usuń</button>
-        </form>
-      </li>
-    <% }) %>
-  </ul>
+  <div class="container">
+    <h1>Twoje podróże</h1>
+
+    <a href="/trips/new" class="btn btn-white">➕ Dodaj nową podróż</a>
+
+    <ul>
+      <% trips.forEach(trip => { %>
+        <li class="trip-card">
+          <h2><%= trip.name %></h2>
+          <p><strong>Data:</strong> <%= trip.date %></p>
+          <p><strong>Hotel:</strong> <%= trip.hotel %></p>
+          <p><strong>Transport:</strong> <%= trip.transport %></p>
+          <p><strong>Miejsca:</strong> <%= trip.places %></p>
+
+          <a href="/trips/<%= trip.id %>/edit" class="btn">✏️ Edytuj</a>
+
+          <!-- Кнопка USUŃ -->
+          <form action="/trips/<%= trip.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Czy na pewno chcesz usunąć tę podróż?');">
+            <button type="submit" class="btn">🗑 Usuń</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
 </body>
 </html>
